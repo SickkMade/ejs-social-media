@@ -9,6 +9,7 @@ const flash = require('express-flash')
 const logger = require("morgan");
 const connectDB = require('./config/databse.js')
 let mainRoutes = require('./routers/mainRoutes')
+let loginRoutes = require('./routers/loginRoutes')
 
 require("dotenv").config({path: "./config/.env"})
 
@@ -38,6 +39,7 @@ app.use(session({
 app.use(flash())
 
 app.use("/", mainRoutes)
+// app.use("/post", loginRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log("server is :runningemoji:")

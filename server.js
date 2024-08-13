@@ -9,7 +9,7 @@ const flash = require('express-flash')
 const logger = require("morgan");
 const connectDB = require('./config/databse.js')
 let mainRoutes = require('./routers/mainRoutes')
-let loginRoutes = require('./routers/loginRoutes')
+// let postRoutes = require('./routers/postRoutes.js')
 
 require("dotenv").config({path: "./config/.env"})
 
@@ -32,9 +32,9 @@ app.use(session({
 }))
 
 //passport config
-// require('./config/passport')(passport)
-// app.use(passport.initialize())
-// app.use(passport.session())
+require('./config/passport')(passport)
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(flash())
 

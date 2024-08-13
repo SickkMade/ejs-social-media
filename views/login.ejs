@@ -6,20 +6,21 @@
     	<meta name="keywords" content="one, two, three">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Log In</title>
+		<title>Login</title>
 
 		<!-- external CSS link -->
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<h1>log in page</h1>
+		<h1>Login</h1>
         <form method="POST" action="/login">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="Enter Email">
+            <input id="email" required name="email" type="email" placeholder="Enter Email">
             <label for="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="Enter Password">
-            <input type="submit" value="Submit">
+            <input id="password" required name="password" type="password" placeholder="Enter Password">
+            <button type="submit">Submit</button>
         </form>
+        <a href="/">Home</a>
 		<script type="text/javascript" src="js/index.js"></script>
 	</body>
 </html>

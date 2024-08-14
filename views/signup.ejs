@@ -14,10 +14,12 @@
 	<body>
 		<h1>sign up page</h1>
         <form method="POST" action="/signup">
-            <label for="email">Name</label>
+            <label for="name">Name</label>
             <input id="name" required name="name" type="text" placeholder="Enter Name">
             <label for="email">Email</label>
             <input id="email" required name="email" type="email" placeholder="Enter Email">
+			<label for="confirmEmail">Email</label>
+            <input id="confirmEmail" required name="confirmEmail" type="email" placeholder="Confirm Email">
             <label for="password">Password</label>
             <input id="password" required name="password" type="password" placeholder="Enter Password">
             <button type="submit">Submit</button>

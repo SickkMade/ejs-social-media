@@ -9,12 +9,33 @@
 		<title><%= user.userName %>'s Profile</title>
 
 		<!-- external CSS link -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/feed.css">
 	</head>
 	<body>
-		<h1>welcome to <%= user.userName %>'s profile</h1>
-		<a href="/logout">Logout</a>
-		<a href="/feed">Feed</a>
+        <header>
+            <h1>welcome to <%= user.userName %>'s profile</h1>
+            <a href="/logout">Logout</a>
+            <a href="/feed">Feed</a>
+        </header>
+        <section id="post-form">
+            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter Title">
+                <label for="caption">Caption</label>
+                <input type="text" id="caption" name="caption" placeholder="Enter Caption" max="16">
+                <label for="image">Image</label>
+                <input id="image" name="image" type="file" accept=".png,.jpg,.jpeg">
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        <section id="posts">
+            <div class="post">
+                <div class="post-title">not a test</div>
+                <img class="post-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Kreta_%28GR%29%2C_Rethymno%2C_K%C3%BCchenutensilien_--_2023_--_8185.jpg/1920px-Kreta_%28GR%29%2C_Rethymno%2C_K%C3%BCchenutensilien_--_2023_--_8185.jpg">
+            </div>
+            </section>
+		
 		<script type="text/javascript" src="js/index.js"></script>
 	</body>
 </html>

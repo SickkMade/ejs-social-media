@@ -7,4 +7,7 @@ module.exports = {
     getProfile: (req, res) => {
         res.render('profile.ejs', {user: req.user})
     },
+    getFeed: (req, res) => {
+        res.render('feed.ejs')
+    }
 }

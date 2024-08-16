@@ -8,6 +8,12 @@ exports.getLogin = (req, res) => {
 exports.getSignup = (req, res) => {
     res.render("signup.ejs")
 },
+exports.logOut = (req, res, next) => {
+    req.logOut((err) => {
+        if(err) return next(err)
+        return res.redirect('/')
+    })
+}
 exports.postLogin = (req, res, next) => {
     
     const validationErrors = [];

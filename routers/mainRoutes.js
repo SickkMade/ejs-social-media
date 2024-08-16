@@ -10,5 +10,7 @@ router.get('/signup', authMiddleware.isLoggedIn, authController.getSignup)
 router.post('/login', authController.postLogin)
 router.post('/signup', authController.postSignup)
 router.get('/profile', authMiddleware.isUserAuthenticated, mainController.getProfile)
+router.get('/feed', mainController.getFeed)
+router.get('/logout',  authMiddleware.isUserAuthenticated, authController.logOut)
 
 module.exports = router

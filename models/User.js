@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
 
 // HASH THESE PASSWORDS
 
-userSchema.pre("save", next => {
+userSchema.pre("save", function(next){
     const user = this;
 
     //all middleware needs to call next() or call upon a res
@@ -28,6 +28,13 @@ userSchema.pre("save", next => {
         })
     })
 })
+
+userSchema.methods.comparePassword = function(canidatePassword, cb){
+    console.log(canidatePassword, this.password)
+    bcrypt.compare(canidatePassword, this.password, (err, isMatch) => {
+        cb(err, isMatch)
+    })
+}
 
 
 

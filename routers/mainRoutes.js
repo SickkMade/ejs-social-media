@@ -1,11 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/mainController')
+const mainController = require('../controllers/mainController')
+const authController = require('../controllers/Auth')
+const authMiddleware = require('../middleware/auth.js')
 
-router.get('/', controller.getIndex)
-router.get('/login', controller.getLogin)
-router.get('/signup', controller.getSignup)
-router.post('/login', controller.postLogin)
-router.post('/signup', controller.postSignup)
+router.get('/', mainController.getIndex)
+router.get('/login', authMiddleware.isLoggedIn, authController.getLogin)
+router.get('/signup', authMiddleware.isLoggedIn, authController.getSignup)
+router.post('/login', authController.postLogin)
+router.post('/signup', authController.postSignup)
+router.get('/profile', authMiddleware.isUserAuthenticated, mainController.getProfile)
 
 module.exports = router

@@ -13,8 +13,13 @@
 	</head>
 	<body>
 		<h1>Login</h1>
+		<% if(locals.messages.errors) { %>
+			<% for (let i = 0; i < messages.errors.length; i++) { %>
+				<p><%= messages.errors[i].msg%></p>
+			<% } %>
+		<% } %>
         <form method="POST" action="/login">
-            <label for="email">Email</label>
+            <label for="userName">Email</label>
             <input id="email" required name="email" type="email" placeholder="Enter Email">
             <label for="password">Password</label>
             <input id="password" required name="password" type="password" placeholder="Enter Password">

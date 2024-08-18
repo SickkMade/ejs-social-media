@@ -18,10 +18,12 @@
         </header>
         <!-- use this for ejs stuff later -->
         <section id="posts">
-        <div class="post">
-            <div class="post-title">not a test</div>
-            <img class="post-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Kreta_%28GR%29%2C_Rethymno%2C_K%C3%BCchenutensilien_--_2023_--_8185.jpg/1920px-Kreta_%28GR%29%2C_Rethymno%2C_K%C3%BCchenutensilien_--_2023_--_8185.jpg">
-        </div>
+            <% posts.forEach(post => { %>
+            <div class="post">
+                <div class="post-title"><%= post.title %></div>
+                <img class="post-image" src="<%= post.image %>">
+            </div>
+            <% }); %>
         </section>
 		<script type="text/javascript" src="js/index.js"></script>
 	</body>

@@ -20,6 +20,11 @@ header > * {
     height:25vw;
     box-shadow: var(--box-shadow);
     background-color: white;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .post:hover{
@@ -40,15 +45,15 @@ header > * {
 .post-title{
     font-size:calc(1rem + 2vw);
     text-align: center;
-    margin:5% 0 10%;
     width:100%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .post-image{
-    width:75%;
-    margin-left:12.5%;
+    min-width:50%;
+    max-width:75%;
+    max-height:50%;
     border-radius:5px;
     border: var(--border);
 }

@@ -1,13 +1,17 @@
-
+const Post = require('../models/Post')
 
 module.exports = {
     getIndex:(req, res) => {
         res.render('index.ejs', {isAuth: req.isAuthenticated()})
     },
-    getProfile: (req, res) => {
-        res.render('profile.ejs', {user: req.user})
+    getProfile: async (req, res) => {
+        const posts = await Post.find({user:req.user.id}).sort({createdAt:"desc"}).lean()
+
+        await res.render('profile.ejs', {user: req.user, posts:posts})
     },
-    getFeed: (req, res) => {
-        res.render('feed.ejs')
+    getFeed: async (req, res) => {
+        const posts = await Post.find().sort({createdAt:"desc"}).lean()
+
+        await res.render('feed.ejs', {posts: posts})
     }
 }

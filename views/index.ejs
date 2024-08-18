@@ -13,8 +13,12 @@
 	</head>
 	<body>
 		<h1>best social media site evr</h1>
-		<a href="/login">Log In</a>
-		<a href="/signup">Sign Up</a>
+		<% if(isAuth){ %>
+			<a href="/profile">My Profile</a>
+		<% } else { %>
+			<a href="/login">Log In</a>
+			<a href="/signup">Sign Up</a>
+		<% } %>
 		<script type="text/javascript" src="js/index.js"></script>
 	</body>
 </html>

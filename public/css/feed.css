@@ -43,7 +43,7 @@ header > * {
 }
 
 .post-title{
-    font-size:calc(1rem + 2vw);
+    font-size:calc(.5rem + 2vw);
     text-align: center;
     width:100%;
     overflow: hidden;

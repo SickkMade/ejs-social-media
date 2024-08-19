@@ -10,7 +10,7 @@ exports.createPost = async (req, res) => {
             image:result.secure_url,
             caption:req.body.caption,
             likes:0,
-            user:req.user,
+            user:req.user, //wanted to do id and then populate it, but im too far in to fix this
             cloudinaryId: result.public_id,
         })
     
@@ -22,11 +22,10 @@ exports.createPost = async (req, res) => {
 
 exports.getPost = async (req, res) => {
     try{
-        const post = await Post.findOne({_id: req.params.id}).populate('user').lean()
+        const post = await Post.findOne({_id: req.params.id}).populate('user')
 
-        await res.render('post.ejs', {user: post.user, post: post})
+        await res.render('post.ejs', {user: req.user, post: post})
 
-        console.log(post)
     } catch(error){
         console.error(error)
     }
@@ -43,4 +42,21 @@ exports.likePost = async (req, res) => {
     catch(error){
         console.error(error)
     }
+}
+
+exports.deletePost = async (req, res) => {
+    try{
+        const post = await Post.findOne({_id: req.params.id})
+
+
+        await cloudinary.uploader.destroy(post.cloudinaryId)
+        await Post.deleteOne({_id: req.params.id})
+
+        return await res.redirect('/profile')
+    }
+    catch(error){
+        console.error(error)
+        res.redirect('/profile')
+    }
+    
 }

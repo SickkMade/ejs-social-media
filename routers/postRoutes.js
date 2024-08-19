@@ -7,5 +7,6 @@ const multer = require('../middleware/multer')
 router.post('/createPost', multer.single("image"), postController.createPost)
 router.get('/:id', postController.getPost)
 router.put('/like/:id', postController.likePost)
+router.delete('/deletePost/:id', postController.deletePost)
 
 module.exports = router

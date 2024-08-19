@@ -12,8 +12,16 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-        <a href="/feed">back</a>
-        <h3>Posted by: <%= user.userName %></h3>
+        <div>
+            <a href="/feed">feed</a>
+            <a href="/profile">profile</a>
+        </div>
+        <h3>Posted by: <%= post.user.userName %></h3>
+        <% if(user.id === post.user.id) {%>
+            <form method="POST" action="/post/deletePost/<%= post._id %>?_method=DELETE">
+                <button type="submit">Delete My Post</button>
+            </form>
+        <% } %>
         <p>Posted At: <%= post.createdAt %></p>
 		<h1 id="title"><%= post.title %></h1>
         <p id="caption"><%= post.caption %></p>

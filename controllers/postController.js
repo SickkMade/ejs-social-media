@@ -68,7 +68,7 @@ exports.addComment = async (req, res) => {
         const post = await Post.findOne({_id: req.params.id})
 
         const comment = await Comment.create({
-            user: post.user._id,
+            user: req.user._id,
             comment: req.body.commment,
         })
     

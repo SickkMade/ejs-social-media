@@ -8,5 +8,6 @@ router.post('/createPost', multer.single("image"), postController.createPost)
 router.get('/:id', postController.getPost)
 router.put('/like/:id', postController.likePost)
 router.delete('/deletePost/:id', postController.deletePost)
+router.post('/addComment/:id', postController.addComment)
 
 module.exports = router

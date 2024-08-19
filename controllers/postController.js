@@ -1,5 +1,6 @@
 const cloudinary = require('../middleware/cloudinary')
 const Post = require('../models/Post')
+const Comment = require('../models/Comment')
 
 exports.createPost = async (req, res) => {
     try{
@@ -22,7 +23,7 @@ exports.createPost = async (req, res) => {
 
 exports.getPost = async (req, res) => {
     try{
-        const post = await Post.findOne({_id: req.params.id}).populate('user')
+        const post = await Post.findOne({_id: req.params.id}).populate('user').populate({path: 'comments', populate:{path:'user'}});
 
         await res.render('post.ejs', {user: req.user, post: post})
 
@@ -50,6 +51,7 @@ exports.deletePost = async (req, res) => {
 
 
         await cloudinary.uploader.destroy(post.cloudinaryId)
+        await Comment.deleteMany({_id: {$in: post.comments}})
         await Post.deleteOne({_id: req.params.id})
 
         return await res.redirect('/profile')
@@ -59,4 +61,24 @@ exports.deletePost = async (req, res) => {
         res.redirect('/profile')
     }
     
+}
+
+exports.addComment = async (req, res) => {
+    try{
+        const post = await Post.findOne({_id: req.params.id})
+
+        const comment = await Comment.create({
+            user: post.user._id,
+            comment: req.body.commment,
+        })
+    
+        post.comments.push(comment._id)
+        await post.save()
+    
+        res.redirect('/post/'+req.params.id)
+    }
+    catch(error){
+        console.error(error)
+        res.redirect('/profile')
+    }
 }

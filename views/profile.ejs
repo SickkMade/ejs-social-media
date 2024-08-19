@@ -31,10 +31,10 @@
         </section>
         <section id="posts">
             <% posts.forEach(post => { %>
-                <div class="post">
+                <a class="post" href="/post/<%= post._id %>">
                     <div class="post-title"><%= post.title %></div>
                     <img class="post-image" src="<%= post.image %>">
-                </div>
+                </a>
             <% }); %>
             </section>
 		

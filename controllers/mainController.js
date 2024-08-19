@@ -13,5 +13,5 @@ module.exports = {
         const posts = await Post.find().sort({createdAt:"desc"}).lean()
 
         await res.render('feed.ejs', {posts: posts})
-    }
+    },
 }

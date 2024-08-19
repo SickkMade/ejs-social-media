@@ -19,3 +19,28 @@ exports.createPost = async (req, res) => {
         console.error(e)
     }
 }
+
+exports.getPost = async (req, res) => {
+    try{
+        const post = await Post.findOne({_id: req.params.id}).populate('user').lean()
+
+        await res.render('post.ejs', {user: post.user, post: post})
+
+        console.log(post)
+    } catch(error){
+        console.error(error)
+    }
+    
+}
+
+exports.likePost = async (req, res) => {
+    try{
+        const post = await Post.findOne({_id: req.params.id})
+        post.likes += 1;
+        await post.save()
+        return res.redirect('/post/'+req.params.id)
+    }
+    catch(error){
+        console.error(error)
+    }
+}
